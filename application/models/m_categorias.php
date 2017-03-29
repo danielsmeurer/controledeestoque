@@ -41,6 +41,18 @@ class M_categorias extends CI_Model {
 		return $query->num_rows(); 
 	}
 
+	public function pegaCategoria($id=false, $nome=false){
+		if(!$id && !$nome) return false;
+		if($id){
+			$where['id'] = $id;
+		}
+		if($nome){
+			$where['nome'] = $nome;
+		}
+		$query=$this->db->get_where($this->table, $where);		
+		return $query->result(); 
+	}
+
 	public function pegaTodasCategorias(){
 		$query = $this->db->get($this->table);
 		return  $query->result();
@@ -48,7 +60,10 @@ class M_categorias extends CI_Model {
 
 	public function editaCategoria($id=false, $categoria=false){
 		if(!$id or !$categoria){return false;}
-		$this->db->update($table, $categoria, array('id' => $id));
+		if($this->verificaSeExisteCategoria($id=false, $categoria)){ return false;}
+		$this->categoria['nome']= $categoria;
+		var_dump($id);
+		$this->db->update($this->table, $this->categoria, array('id' => 12) );
 		if($this->db->affected_rows()>0){
 			return true;
 		}

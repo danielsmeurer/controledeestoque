@@ -53,9 +53,29 @@ class Categorias extends CI_Controller {
 		if(!$this->uri->segment(3))	{
 			show_404();
 		}
-		else{
-
-
+	else{
+			$id=$this->uri->segment(3);
+			if($this->input->post('submit_edita')){
+				$this->load->library('form_validation');
+				$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+				$this->form_validation->set_rules('nome', 'Nome da categoria', 'required');
+	            if ($this->form_validation->run() == TRUE)
+	            {
+	             	$edita_categoria= $this->editar($id, $this->input->post('nome'));
+	                if(!$edita_categoria){
+	                	$this->data['msg']['error']="<p>Categoria não foi alterada</p>";	               
+	                }else{
+	                	$this->data['msg']['sucess']="<p>Categoria atualizada com sucesso</p>";
+	                }
+	            }
+			}
+			$atual =$this->get_categoria($id);
+			$this->data['id']=$id;
+			$this->data['nome_atual']=$atual[0]->nome;				
+			$this->data['title'] = 'Categorias - Edição';
+			$this->load->view('template/header', $this->data);
+			$this->load->view('categorias/form_edita', $this->data);
+			$this->load->view('template/footer');
 		}
 	}
 
@@ -68,9 +88,16 @@ class Categorias extends CI_Controller {
 		return  $this->m_categorias->cadastra_categoria($nome);
 	}
 
-	private function editar($id=false,$data=false){
+	private function editar($id=false, $data=false){
 		if(!$id or !$data){return false;}
-		
+		return  $this->m_categorias->editaCategoria($id, $data);
+	}
+
+	private function get_categoria($id=false){
+		if($id){
+			return  $this->m_categorias->pegaCategoria($id, false);
+		}
+		return false;
 	}
 
 
