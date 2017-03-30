@@ -28,8 +28,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a data-target="categorias" href=" <?php echo base_url('categorias/form_lista'); ?>">Categorias</a></li>
-		    <li><a data-target="habilidades" >Lotes</a></li>
-		    <li><a data-target="portifolio" >Produtos</a></li>
+		    <li><a data-target="lotes" >Lotes</a></li>
+		    <li><a data-target="produtos"  href=" <?php echo base_url('produtos/form_lista'); ?>" >Produtos</a></li> 
 		    <li><a data-target="distribuidores"  href=" <?php echo base_url('distribuidores/form_lista'); ?>" >Fornecedores</a></li>              
       </ul>
     </div>

@@ -114,6 +114,8 @@ class Categorias extends CI_Controller {
 		return  $this->m_categorias->pegaTodasCategorias();
 	}
 
+	
+
 	private function cadastra($nome=false){
 		if(!$nome){return false;}
 		return  $this->m_categorias->cadastra_categoria($nome);
