@@ -17,7 +17,7 @@ echo '<br><br><br>'.anchor('distribuidores/form_cadastro', '<span class="glyphic
 if($distribuidores):
 	foreach ($distribuidores as $item):?>
 	<tr>
-		<td><?php echo anchor('distribuidores/form_categoria/'.$item->id, $item->nome, array('title' =>$item->nome.$item->nome, 'class'=>"editar"));?></td>
+		<td><?php echo anchor('distribuidores/form_distribuidor/'.$item->id, $item->nome, array('title' =>$item->nome.$item->nome, 'class'=>"editar"));?></td>
 		<td><?php echo anchor('distribuidores/form_edita/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> Editar', array('title' => 'editar -'.$item->nome, 'class'=>"editar"));?></td>
 		<td><span class="dist_excluir btn btn-link" id="<?php echo $item->id;?>"> <span  class="glyphicon glyphicon-minus"></span>Excluir</span>
 		<?php /* echo anchor('#', '<span class="glyphicon glyphicon-minus">Excluir', array('title' => 'excluir -'.$item->nome, 'class'=>"cat_excluir",'id'=>$item->id))*/?></td>
@@ -36,7 +36,7 @@ else: ?>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="delete-modal-categoria" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+<div class="modal fade" id="delete-modal-distribuidor" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

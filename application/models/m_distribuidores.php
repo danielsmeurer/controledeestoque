@@ -12,7 +12,7 @@ class M_distribuidores extends CI_Model {
 	public function cadastra_distribuidor($dados=false)
 	{
 		if(is_array($dados)){
-			if( empyt($dados['nome'])){return false;}
+			if( empty($dados['nome'])){return false;}
 			if( empty($dados['cnpj'])){return false;}
 			$this->dados['nome'] = $dados['nome'];
 			$this->dados['cnpj'] = $dados['cnpj'];
@@ -79,23 +79,6 @@ class M_distribuidores extends CI_Model {
 		return false;
 	}
 
-
-
-
-/*
 	
-
-	
-
-	public function pegaTodasCategorias(){
-		$query = $this->db->get($this->table);
-		return  $query->result();
-	}
-
-	
-
-	*/
-
-
 
 }

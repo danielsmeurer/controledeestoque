@@ -7,6 +7,13 @@ $(document).ready(function(){
 				
 	})	
 
+	$('.dist_excluir').on('click',function(){
+		var id = $(this).attr('id');
+		$('#delete-modal-distribuidor').modal();
+		$("#confirm").attr('onclick','excluirDistribuidor('+id+')');	
+				
+	})	
+
 })
 
 function excluirCategoria(id){
@@ -16,7 +23,7 @@ function excluirCategoria(id){
 		  });
 		setTimeout(function(){
 		$('#delete-modal-categoria').modal("hide");		 
-		}, 700);
+		}, 200);
 	  	
 	})
 }
@@ -27,8 +34,8 @@ function excluirDistribuidor(id){
 		  	$('tbody').html(data);
 		  });
 		setTimeout(function(){
-		$('#delete-modal-categoria').modal("hide");		 
-		}, 700);
+		$('#delete-modal-distribuidor').modal("hide");		 
+		}, 200);
 	  	
 	})
 }

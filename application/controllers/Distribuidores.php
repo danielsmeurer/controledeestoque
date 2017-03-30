@@ -26,11 +26,10 @@ class Distribuidores extends CI_Controller {
             if ($this->form_validation->run() == TRUE)
             {                           	
             	$cadastra_distribuidor = $this->cadastra($this->input->post()); 
-            	var_dump($cadastra_distribuidor); exit();
-                if(!$cadastra_distribuidor){
+            	if(!$cadastra_distribuidor){
                 	$this->data['msg']['error']="<p>Categoria não foi gravada corretament</p>";
                 }
-                elseif( $$cadastra_distribuidor === 'existe'){
+                elseif( $cadastra_distribuidor === 'existe'){
                 	$this->data['msg']['error']="<p>Já existe uma distribuidor com o mesmo CNPJ escolha outro.</p>";
                 }else{
                 	$this->data['msg']['sucess']="<p>Distribuidor cadastrado com sucesso</p>";
@@ -100,9 +99,27 @@ class Distribuidores extends CI_Controller {
 	}	
 
 	public function ajax_form_lista(){
-		$this->data['distribuidores']=$this->listar_distribuidores();		
-		$this->load->view('distribuidores/ajax_form_lista', $this->data);		
+		$this->data['distribuidores']=$this->listar_distribuidores();
+		$this->load->view('distribuidores/ajax_form_lista', $this->data);
+
 	}
+
+	/*
+	Pagina para apenas visualizar uma categoria.
+	 */	
+	public function form_distribuidor(){
+		if(!$this->uri->segment(3))	{
+			show_404();
+		}
+		else{
+			$this->data['distribuidor']=$this->get_distribuidor($this->uri->segment(3));			
+			$this->data['title'] = 'Distribuidor - Leitura';
+			$this->load->view('template/header', $this->data);
+			$this->load->view('distribuidores/form_distribuidor', $this->data);
+			$this->load->view('template/footer');
+		}
+	}
+
 
 	private function excluir_distribuidor($id=false){
 		if($id){
@@ -204,22 +221,7 @@ public function index()
 			$this->load->view('template/footer');
 		}
 	}
-	/*
-	Pagina para apenas visualizar uma categoria.
-	 */	
-/*	public function form_categoria(){
-		if(!$this->uri->segment(3))	{
-			show_404();
-		}
-		else{
-			$this->data['categoria']=$this->get_categoria($this->uri->segment(3));			
-			$this->data['title'] = 'Categorias - Leitura';
-			$this->load->view('template/header', $this->data);
-			$this->load->view('categorias/form_categoria', $this->data);
-			$this->load->view('template/footer');
-		}
-	}
-
+	
 	
 
 	*/
