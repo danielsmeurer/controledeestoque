@@ -1,19 +1,4 @@
-
-<div class="h1"><?php echo $title; ?></div>
-<div class="row">
-<table class="table table-striped">
-<thead>
-	<tr>
-		<th>Categoria</th>
-		<th>Editar</th>
-		<th>Excluir</th>
-	</tr>
-</thead>
-<tbody>
-<?php 
-echo '<br><br><br>'.anchor('categorias/form_cadastro', '<span class="glyphicon glyphicon-plus"></span> Categoria', array( 'class'=>"btn btn-primary"));
-
-
+<?php
 if($categorias):
 	foreach ($categorias as $cat):?>
 	<tr>
@@ -30,10 +15,6 @@ else: ?>
 		<td rowspan="3" align="center"><strong>Não há nenhuma categoria cadastrada ainda.</strong></td>
 	</tr>
 <?php endif;?>
-</tbody>
-</table>
-
-</div>
 
 <!-- Modal -->
 <div class="modal fade" id="delete-modal-categoria" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
@@ -53,3 +34,4 @@ else: ?>
     </div>
   </div>
 </div> <!-- /.modal -->
+<script src="<?php echo base_url('/assets/js/script.js'); ?>"></script>

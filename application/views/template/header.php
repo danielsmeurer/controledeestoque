@@ -8,8 +8,11 @@
 	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
+  <link rel="stylesheet" href=" <?php echo base_url('/assets/css/style.css'); ?> "> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href=" <?php echo base_url('/assets/css/style.css'); ?> ">	
+  <script src="js/jquery-1.2.6.pack.js" type="text/javascript"></script>
+  <script src="<?php echo base_url('/assets/js/jquery.maskedinput-1.1.4.pack.js'); ?>" type="text/javascript" /></script>
+	
 </head>
 <body>
 <nav class="navbar navbar-inverse ">
@@ -24,11 +27,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a data-target="home">Início</a></li>
-		    <li><a data-target="sobre" >Categorias</a></li>
+        <li><a data-target="categorias" href=" <?php echo base_url('categorias/form_lista'); ?>">Categorias</a></li>
 		    <li><a data-target="habilidades" >Lotes</a></li>
 		    <li><a data-target="portifolio" >Produtos</a></li>
-		    <li><a data-target="contato" >Fornecedores</a></li>              
+		    <li><a data-target="distribuidores"  href=" <?php echo base_url('distribuidores/form_lista'); ?>" >Fornecedores</a></li>              
       </ul>
     </div>
   </div>

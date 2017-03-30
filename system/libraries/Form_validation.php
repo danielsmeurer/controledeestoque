@@ -1581,4 +1581,47 @@ class CI_Form_validation {
 		return $this;
 	}
 
+
+	/**
+      * Verifica se o CNPJ é valido
+     * @param     string
+      * @return     bool
+      */
+     function valid_cnpj($str)
+     {
+         if (strlen($str) <> 18) return FALSE;
+         $soma1 = ($str[0] * 5) +
+                 ($str[1] * 4) +
+                 ($str[3] * 3) +
+                 ($str[4] * 2) +
+                 ($str[5] * 9) +
+                 ($str[7] * 8) +
+                 ($str[8] * 7) +
+                 ($str[9] * 6) +
+                 ($str[11] * 5) +
+                 ($str[12] * 4) +
+                 ($str[13] * 3) +
+                 ($str[14] * 2);
+         $resto = $soma1 % 11;
+         $digito1 = $resto < 2 ? 0 : 11 - $resto;
+         $soma2 = ($str[0] * 6) +
+                 ($str[1] * 5) +
+                 ($str[3] * 4) +
+                 ($str[4] * 3) +
+                 ($str[5] * 2) +
+                 ($str[7] * 9) +
+                 ($str[8] * 8) +
+                 ($str[9] * 7) +
+                 ($str[11] * 6) +
+                 ($str[12] * 5) +
+                 ($str[13] * 4) +
+                 ($str[14] * 3) +
+                 ($str[16] * 2);
+         $resto = $soma2 % 11;
+         $digito2 = $resto < 2 ? 0 : 11 - $resto;
+         return (($str[16] == $digito1) && ($str[17] == $digito2));
+     }
+
+    
+
 }

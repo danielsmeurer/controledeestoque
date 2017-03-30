@@ -49,6 +49,13 @@ class Categorias extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+
+	public function ajax_form_lista(){
+		$this->data['categorias']=$this->listar_categorias();		
+		$this->load->view('categorias/ajax_form_lista', $this->data);
+		
+	}
+
 	public function form_edita(){
 		if(!$this->uri->segment(3))	{
 			show_404();
@@ -78,6 +85,30 @@ class Categorias extends CI_Controller {
 			$this->load->view('template/footer');
 		}
 	}
+	/*
+	Pagina para apenas visualizar uma categoria.
+	 */	
+	public function form_categoria(){
+		if(!$this->uri->segment(3))	{
+			show_404();
+		}
+		else{
+			$this->data['categoria']=$this->get_categoria($this->uri->segment(3));			
+			$this->data['title'] = 'Categorias - Leitura';
+			$this->load->view('template/header', $this->data);
+			$this->load->view('categorias/form_categoria', $this->data);
+			$this->load->view('template/footer');
+		}
+	}
+
+	public function ajax_excluir_categoria(){
+		if(!$this->input->post('cat_id')){
+			show_404();
+		}
+		$id=$this->input->post('cat_id');
+		$this->data['exclusao']=$this->excluir_categoria($id);
+		$this->load->view('categorias/ajax_excluir',$this->data);
+	}
 
 	private function listar_categorias(){
 		return  $this->m_categorias->pegaTodasCategorias();
@@ -100,8 +131,11 @@ class Categorias extends CI_Controller {
 		return false;
 	}
 
-
-
-
+	private function excluir_categoria($id){
+		if($id){
+			return  $this->m_categorias->excluiCategoria($id);
+		}
+		return false;
+	}
 
 }

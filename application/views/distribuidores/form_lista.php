@@ -4,23 +4,23 @@
 <table class="table table-striped">
 <thead>
 	<tr>
-		<th>Categoria</th>
+		<th>Distribuidor</th>
 		<th>Editar</th>
 		<th>Excluir</th>
 	</tr>
 </thead>
 <tbody>
 <?php 
-echo '<br><br><br>'.anchor('categorias/form_cadastro', '<span class="glyphicon glyphicon-plus"></span> Categoria', array( 'class'=>"btn btn-primary"));
+echo '<br><br><br>'.anchor('distribuidores/form_cadastro', '<span class="glyphicon glyphicon-plus"></span> Distribuidor', array( 'class'=>"btn btn-primary"));
 
 
-if($categorias):
-	foreach ($categorias as $cat):?>
+if($distribuidores):
+	foreach ($distribuidores as $item):?>
 	<tr>
-		<td><?php echo anchor('categorias/form_categoria/'.$cat->id, $cat->nome, array('title' =>$cat->nome.$cat->nome, 'class'=>"editar"));?></td>
-		<td><?php echo anchor('categorias/form_edita/'.$cat->id, '<span class="glyphicon glyphicon-pencil"></span> Editar', array('title' => 'editar -'.$cat->nome, 'class'=>"editar"));?></td>
-		<td><span class="cat_excluir btn btn-link" id="<?php echo $cat->id;?>"> <span  class="glyphicon glyphicon-minus"></span>Excluir</span>
-		<?php /* echo anchor('#', '<span class="glyphicon glyphicon-minus">Excluir', array('title' => 'excluir -'.$cat->nome, 'class'=>"cat_excluir",'id'=>$cat->id))*/?></td>
+		<td><?php echo anchor('distribuidores/form_categoria/'.$item->id, $item->nome, array('title' =>$item->nome.$item->nome, 'class'=>"editar"));?></td>
+		<td><?php echo anchor('distribuidores/form_edita/'.$item->id, '<span class="glyphicon glyphicon-pencil"></span> Editar', array('title' => 'editar -'.$item->nome, 'class'=>"editar"));?></td>
+		<td><span class="dist_excluir btn btn-link" id="<?php echo $item->id;?>"> <span  class="glyphicon glyphicon-minus"></span>Excluir</span>
+		<?php /* echo anchor('#', '<span class="glyphicon glyphicon-minus">Excluir', array('title' => 'excluir -'.$item->nome, 'class'=>"cat_excluir",'id'=>$item->id))*/?></td>
 	</tr>
 	
 <?php 	

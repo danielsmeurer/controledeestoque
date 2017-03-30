@@ -9,8 +9,8 @@ if(isset($msg['error'])):?>
 <?php
 endif;
 
-echo form_label('Nome da categoria', 'nome');
-echo form_open('categorias/form_edita/'.$id); 
+echo form_label('Nome do distribuidor', 'nome');
+echo form_open('distribuidores/form_edita/'.$id); 
 $data = array(
         'name'          => 'nome',
         'id'            => 'nome',
@@ -20,10 +20,23 @@ $data = array(
 );
 echo form_input($data);	
 echo form_error('nome'); 
+echo "</p><p>";
+echo form_label('CNPJ', 'cnpj').'<br>';
+$data = array(
+        'name'          => 'cnpj',
+        'id'            => 'cnpj',
+        'value'         => $cnpj_atual,
+        'maxlength'     => '18',
+        'size'          => '50'        
+);
+echo form_input($data);	
+echo form_error('cnpj'); 
+echo "</p><p>";
+echo'<br><br>';
 echo'<br><br>';
 echo form_submit('submit_edita', 'Enviar',array( 'class'=>"btn btn-default"));
 echo form_close();
-echo '<br><br><br>'.anchor('categorias/form_lista', 'Voltar', array( 'class'=>"btn btn-link"));
+echo '<br><br><br>'.anchor('distribuidores/form_lista', 'Voltar', array( 'class'=>"btn btn-link"));
 ?>
 
 

@@ -62,8 +62,7 @@ class M_categorias extends CI_Model {
 		if(!$id or !$categoria){return false;}
 		if($this->verificaSeExisteCategoria($id=false, $categoria)){ return false;}
 		$this->categoria['nome']= $categoria;
-		var_dump($id);
-		$this->db->update($this->table, $this->categoria, array('id' => 12) );
+		$this->db->update($this->table, $this->categoria, array('id' => $id) );
 		if($this->db->affected_rows()>0){
 			return true;
 		}
@@ -71,6 +70,20 @@ class M_categorias extends CI_Model {
 			//echo $this->db->_error_message();
 			return false;
 		}	 			
+	}
+
+	function excluiCategoria($id=false){
+		if($id){
+			$this->db->delete($this->table, array('id' => $id));
+			if($this->db->affected_rows()>0){
+				return true;
+			}
+			else{
+				//echo $this->db->_error_message();
+				return false;
+			}
+		}
+		return false;
 	}
 
 
